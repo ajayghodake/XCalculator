@@ -18,13 +18,8 @@ const BasicCalsi = () => {
 
   const Calculate = () => {
     try {
-      if (inputValue.includes("/0") && inputValue !== "0/0") {
-        setResult("Error");
-        SetInputValue("Error");
-      } else {
-        const calVal = evaluate(inputValue);
-        setResult(calVal.toString());
-      }
+      const calVal = evaluate(inputValue);
+      setResult(calVal.toString());
     } catch (error) {
       setResult("Error");
     }
