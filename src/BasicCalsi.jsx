@@ -50,7 +50,7 @@ const BasicCalsi = () => {
       <div className="calBtns">
         {numBtns.map((num, index) =>
           num === "C" || "AC"? (
-            <button key={index} onClick={(e)=>handleClear(e.target.key)}>
+            <button key={index} name={index} onClick={(e)=>handleClear(e.target.name)}>
               {num}
             </button>
           ) : num === "=" ? (
