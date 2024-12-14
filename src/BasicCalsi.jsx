@@ -4,16 +4,21 @@ import "./BasicCalsi.css";
 
 const BasicCalsi = () => {
   const [result, setResult] = useState("");
-  const [inputValue, SetInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("");
   const numBtns = [7, 8, 9, "+", 4, 5, 6, "-", 1, 2, 3, "*", "C", 0, "=", "/","AC"];
 
   const handleInput = (val) => {
-    SetInputValue((prev) => prev + val);
+    setInputValue((prev) => prev + val);
   };
 
-  const handleClear = () => {
-    setResult("");
-    SetInputValue("");
+  const handleClear = (key) => {
+    if(key === "AC"){
+      setResult(result.slice(0, -1));
+    } else {
+      setResult("");
+      setInputValue("");
+    }
+    
   };
 
   const Calculate = () => {
@@ -45,7 +50,7 @@ const BasicCalsi = () => {
       <div className="calBtns">
         {numBtns.map((num, index) =>
           num === "C" || "AC"? (
-            <button key={index} onClick={handleClear}>
+            <button key={index} onClick={(e)=>handleClear(e.target.key)}>
               {num}
             </button>
           ) : num === "=" ? (
