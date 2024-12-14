@@ -5,7 +5,7 @@ import "./BasicCalsi.css";
 const BasicCalsi = () => {
   const [result, setResult] = useState("");
   const [inputValue, SetInputValue] = useState("");
-  const numBtns = [7, 8, 9, "+", 4, 5, 6, "-", 1, 2, 3, "*", "C", 0, "=", "/"];
+  const numBtns = [7, 8, 9, "+", 4, 5, 6, "-", 1, 2, 3, "*", "C", 0, "=", "/","AC"];
 
   const handleInput = (val) => {
     SetInputValue((prev) => prev + val);
@@ -44,7 +44,7 @@ const BasicCalsi = () => {
 
       <div className="calBtns">
         {numBtns.map((num, index) =>
-          num === "C" ? (
+          num === "C" || "AC"? (
             <button key={index} onClick={handleClear}>
               {num}
             </button>
