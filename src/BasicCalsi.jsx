@@ -4,22 +4,21 @@ import "./BasicCalsi.css";
 
 const BasicCalsi = () => {
   const [result, setResult] = useState("");
-  const [inputValue, setInputValue] = useState("");
-  const numBtns = [7, 8, 9, "+", 4, 5, 6, "-", 1, 2, 3, "*", "C", 0, "=", "/","AC"];
+  const [inputValue, SetInputValue] = useState("");
+  const numBtns = [7, 8, 9, "+", 4, 5, 6, "-", 1, 2, 3, "*", "C", 0, "=", "/", "AC"];
 
   const handleInput = (val) => {
-    setInputValue((prev) => prev + val);
+    SetInputValue((prev) => prev + val);
   };
 
-  const handleClear = (key) => {
-    if(key === "AC"){
-      setResult(result.slice(0, -1));
-    } else {
-      setResult("");
-      setInputValue("");
-    }
-    
+  const handleClear = () => {
+    SetInputValue((prev) => prev.slice(0, -1));;
   };
+
+  const handleAllClear = () =>{
+    setResult("");
+    SetInputValue("");
+  }
 
   const Calculate = () => {
     try {
@@ -40,7 +39,6 @@ const BasicCalsi = () => {
             type="text"
             value={inputValue}
             readOnly
-            onChange={handleInput}
           />
         </form>
       </div>
@@ -49,16 +47,20 @@ const BasicCalsi = () => {
 
       <div className="calBtns">
         {numBtns.map((num, index) =>
-          num === "C" || "AC"? (
-            <button key={index} name={index} onClick={(e)=>handleClear(e.target.name)}>
+          num === "C" ? (
+            <button key={index} value={num} onClick={handleClear}>
+              {num}
+            </button>
+          ) : num === "AC" ? (
+            <button key={index} value={num} onClick={handleAllClear}>
               {num}
             </button>
           ) : num === "=" ? (
-            <button key={index} onClick={Calculate}>
+            <button key={index} value={num} onClick={Calculate}>
               {num}
             </button>
           ) : (
-            <button key={index} onClick={() => handleInput(num)}>
+            <button key={index} value={num} onClick={() => handleInput(num)}>
               {num}
             </button>
           )
